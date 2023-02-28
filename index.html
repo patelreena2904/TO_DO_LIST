@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+   <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+ 
+  <div>
+       <h1> To-Do List</h1>
+
+    <input type="text" placeholder="Add New Task" id="task">
+    <button onclick="addTask()">Add</button>
+    <ul id="list"></ul>
+  </div>
+
+  <script>
+    let taskInput = document.getElementById("task");
+    let list = document.getElementById("list");
+
+    function addTask() {
+      if (taskInput.value === "") {
+        alert("Please enter a task.");
+        return false;
+      }
+
+      let li = document.createElement("li");
+      let taskText = document.createTextNode(taskInput.value);
+      li.appendChild(taskText);
+      list.appendChild(li);
+      taskInput.value = "";
+
+      let deleteButton = document.createElement("button");
+      let deleteText = document.createTextNode("Delete");
+      deleteButton.appendChild(deleteText);
+      li.appendChild(deleteButton);
+
+      deleteButton.addEventListener("click", function () {
+        li.remove();
+      });
+    }
+  </script>
+</body>
+</html>
